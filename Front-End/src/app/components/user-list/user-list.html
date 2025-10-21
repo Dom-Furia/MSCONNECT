@@ -7,19 +7,23 @@
         <th>Nome</th>
         <th>Email</th>
         <th>Telefone</th>
-        <th>Ações</th>
+        <th class="textalign">Ações</th>
       </tr>
     </thead>
     <tbody>
-      @for (user of users; track user.id) {
+      @for (user of listUser; track user.id) {
         <tr>
         <td>{{ user.id }}</td>
         <td>{{ user.name }}</td>
         <td>{{ user.email }}</td>
-        <td>{{ user.fone}}</td>
-        <td>
-          <button class="btn-edit" (click)="editarUsuario(user)">Editar</button>
-          <button class="btn-delete" (click)="excluirUsuario(user)">Excluir</button>
+        <td>{{ user.phone}}</td>
+        <td class="button">
+            <button class="btn-edit" (click)="editarUsuario(user)">
+               <i class="fas fa-edit"></i> Editar
+            </button>
+            <button class="btn-delete" (click)="excluirUsuario(user)">
+              <i class="fas fa-trash"></i> Excluir
+            </button>
         </td>
       </tr>
 
@@ -27,7 +31,7 @@
     </tbody>
   </table>
 
-  @if (users.length === 0) {
+  @if (listUser.length === 0) {
   <div class="empty">
     Nenhum usuário encontrado.
   </div>

@@ -1,13 +1,12 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, inject} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { CommonModule } from '@angular/common';
 import { User, UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-user-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [ReactiveFormsModule],
   templateUrl: './user-form.html',
   styleUrls: ['./user-form.css']
 })
@@ -15,6 +14,7 @@ export class UserFormComponent {
 
   nametext: string = 'Novo Usuário';
   textbutton: string = 'Salvar';
+
   private fb = inject(FormBuilder);
   private route = inject(ActivatedRoute);
   private userService = inject(UserService);
@@ -67,7 +67,7 @@ export class UserFormComponent {
 
       this.userService.updateUser(this.userId,camposAlterados).subscribe({
         next: (res) => {
-          alert('Usuário atualizado com sucesso!' + res.message);
+          alert(res.message);
           this.router.navigate(['/users']);
         },
         error: err => {

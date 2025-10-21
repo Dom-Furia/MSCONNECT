@@ -1,8 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, inject, OnInit } from '@angular/core';
 import { UserService, User } from '../../services/user.service';
 import { Router } from '@angular/router';
-import { UserFormComponent } from '../user-form/user-form';
 
 @Component({
   selector: 'app-user-list',
@@ -13,9 +11,10 @@ import { UserFormComponent } from '../user-form/user-form';
 })
 export class UserListComponent implements OnInit {
   users: User[] = [];
+  listUser: any[] = [];
 
-
-  constructor(private userService: UserService, private router: Router) {}
+  private userService = inject(UserService);
+  private router = inject(Router);
 
   ngOnInit() {
     this.carregarUsuarios();
@@ -24,10 +23,7 @@ export class UserListComponent implements OnInit {
   carregarUsuarios() {
     this.userService.getUsers().subscribe({
       next: (res) => {
-
-        console.log('Usuários carregados:', res);
-        this.users = res;
-        console.log(this.users);
+        this.listUser = res;
 
       },
       error: (err) => console.error('Erro ao carregar usuários:', err)
@@ -39,7 +35,6 @@ export class UserListComponent implements OnInit {
   };
 
    excluirUsuario(user: User) {
-    console.log('Excluindo usuário:', user.id);
     if (confirm(`Tem certeza que deseja excluir o usuário ${user.name}?`)) {
       this.userService.deleteUser(user.id!).subscribe({
         next: () => {
@@ -47,7 +42,6 @@ export class UserListComponent implements OnInit {
           this.carregarUsuarios(); // Atualiza a lista
         },
         error: (err) => {
-          console.error('Erro ao excluir usuário:', err);
           alert('Erro ao excluir usuário.');
         }
       });

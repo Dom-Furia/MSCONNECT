@@ -43,3 +43,15 @@ tr:hover {
   text-align: center;
   color: #777;
 }
+
+.button{
+  width: 100%;
+  display: flex;
+  justify-items: center;
+ justify-content: space-around;
+
+}
+.textalign{
+  text-align: center;
+}
+
