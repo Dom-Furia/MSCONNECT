@@ -9,6 +9,11 @@ $db = $database->getConnection();
 $controller = new UserController($db);
 $method = $_SERVER['REQUEST_METHOD'];
 
+function getRouteParts() {
+    $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+    return explode('/', trim($uri, '/'));
+};
+
 switch ($method) {
     case 'GET':
         $controller->getUsers();
@@ -19,13 +24,16 @@ switch ($method) {
         $controller->createUser($data);
         break;
 
-    case 'PUT':
+    case 'PATCH':
         $data = json_decode(file_get_contents("php://input"), true);
-        $controller->updateUser($data);
+        $id = getRouteParts()[0] ?? null;
+        var_dump($data);
+        var_dump($id);
+        $controller->updateUser($id, $data);
         break;
 
     case 'DELETE':
-        $id = $_GET['id'] ?? null;
+        $id = getRouteParts()[0] ?? null;
         $controller->deleteUser($id);
         break;
 
@@ -34,4 +42,3 @@ switch ($method) {
         echo json_encode(["error" => "Método não permitido"]);
         break;
 }
-?>

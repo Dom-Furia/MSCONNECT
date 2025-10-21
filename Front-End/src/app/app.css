@@ -1,0 +1,25 @@
+
+nav {
+  display: flex;
+  justify-content: center;
+  background: #fff;
+  padding: 1rem ;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+nav a {
+  color: white;
+  margin: 0 15px;
+  text-decoration: none;
+  font-weight: 500;
+  background-color: #0078d7;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  justify-content: center;
+  transition: 0.3s;
+}
+
+nav a:hover {
+  background-color: #0366b7 ;
+}
+

@@ -32,14 +32,17 @@ class UserController {
         }
     }
 
-    public function updateUser($data) {
-        try {
-            $result = $this->service->updateUser($data);
-            $this->respond($result);
-        } catch (Exception $e) {
-            $this->respond(["error" => $e->getMessage()], 400);
-        }
+  
+
+    public function updateUser($id, $data) {
+    try {
+        $result = $this->service->updateUser($id, $data);
+        $this->respond($result);
+    } catch (Exception $e) {
+        $this->respond(['error' => $e->getMessage()], 400);
     }
+}
+
 
     public function deleteUser($id) {
         try {

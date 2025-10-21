@@ -1,0 +1,22 @@
+.cards {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 30px;
+  flex-wrap: wrap;
+}
+
+.card {
+  background: var(--primary);
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 45%;
+  min-width: 250px;
+  text-align: center;
+  transition: 0.3s;
+}
+
+.card:hover {
+  background: var(--primary-dark);
+  transform: scale(1.03);
+}

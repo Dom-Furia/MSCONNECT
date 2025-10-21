@@ -19,6 +19,19 @@ class User {
         return $stmt;
     }
 
+    public function findById($id) {
+        $query = "SELECT * FROM " . $this->table . " WHERE id = :id";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(":id", $id);
+        $stmt->execute();
+        
+        if ($stmt->rowCount() > 0) {
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        }
+
+        return null;
+}
+
     public function create() {
         $query = "INSERT INTO " . $this->table . " (name, email, phone) VALUES (:name, :email, :fone)";
         $stmt = $this->conn->prepare($query);
@@ -26,7 +39,6 @@ class User {
         $stmt->bindParam(":name", $this->name);
         $stmt->bindParam(":email", $this->email);
         $stmt->bindParam(":fone", $this->fone);
-
         return $stmt->execute();
     }
 
@@ -43,10 +55,11 @@ class User {
     }
 
     public function delete() {
-        $query = "DELETE FROM " . $this->table . " WHERE id=:id";
+        $query = "DELETE FROM " . $this->table . " WHERE id = :id";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(":id", $this->id);
-        return $stmt->execute();
+        $stmt->execute();
+        return $stmt->rowCount() > 0;
     }
 
    public function existsByEmail($email, $excludeId = null) {
