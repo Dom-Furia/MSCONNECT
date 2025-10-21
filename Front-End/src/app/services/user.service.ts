@@ -24,15 +24,19 @@ export class UserService {
     return this.http.get<User[]>(`${this.apiUrl}/users`);
   }
 
+  getUserById(id: number): Observable<User> {
+    return this.http.get<User>(`${this.apiUrl}/users/${id}`);
+  }
+
   createUser(user: User): Observable<any> {
     return this.http.post(`${this.apiUrl}/users`, user);
   }
 
-  updateUser(user: User): Observable<any> {
-    return this.http.put(`${this.apiUrl}/users/${user.id}`, user);
+  updateUser(id: number, user: User): Observable<any> {
+    return this.http.patch(`${this.apiUrl}/${id}`, user);
   }
 
   deleteUser(id: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/${id}`);
+    return this.http.delete(`${this.apiUrl}/users/${id}`);
   }
 }

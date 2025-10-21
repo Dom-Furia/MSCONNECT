@@ -1,5 +1,6 @@
 <?php
-class User {
+class User
+{
     private $conn;
     private $table = "users";
 
@@ -8,31 +9,35 @@ class User {
     public $email;
     public $fone;
 
-    public function __construct($db) {
+    public function __construct($db)
+    {
         $this->conn = $db;
     }
 
-    public function readAll() {
+    public function readAll()
+    {
         $query = "SELECT * FROM " . $this->table . " ORDER BY id DESC";
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
         return $stmt;
     }
 
-    public function findById($id) {
+    public function findById($id)
+    {
         $query = "SELECT * FROM " . $this->table . " WHERE id = :id";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(":id", $id);
         $stmt->execute();
-        
+
         if ($stmt->rowCount() > 0) {
             return $stmt->fetch(PDO::FETCH_ASSOC);
         }
 
         return null;
-}
+    }
 
-    public function create() {
+    public function create()
+    {
         $query = "INSERT INTO " . $this->table . " (name, email, phone) VALUES (:name, :email, :fone)";
         $stmt = $this->conn->prepare($query);
 
@@ -42,7 +47,8 @@ class User {
         return $stmt->execute();
     }
 
-    public function update() {
+    public function update()
+    {
         $query = "UPDATE " . $this->table . " SET name=:name, email=:email, phone=:fone WHERE id=:id";
         $stmt = $this->conn->prepare($query);
 
@@ -54,7 +60,8 @@ class User {
         return $stmt->execute();
     }
 
-    public function delete() {
+    public function delete()
+    {
         $query = "DELETE FROM " . $this->table . " WHERE id = :id";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(":id", $this->id);
@@ -62,7 +69,8 @@ class User {
         return $stmt->rowCount() > 0;
     }
 
-   public function existsByEmail($email, $excludeId = null) {
+    public function existsByEmail($email, $excludeId = null)
+    {
         $sql = "SELECT id FROM users WHERE email = :email";
         if ($excludeId) $sql .= " AND id != :id";
         $stmt = $this->conn->prepare($sql);
@@ -72,4 +80,3 @@ class User {
         return $stmt->rowCount() > 0;
     }
 }
-?>

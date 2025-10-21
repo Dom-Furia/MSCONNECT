@@ -17,6 +17,19 @@ class UserService
         return $user->readAll()->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function getUserById($id)
+    {
+        $user = new User($this->db);
+        $result = $user->findById($id);
+
+        if (!$result) {
+            throw new Exception("Usuário não encontrado.");
+        }
+
+        return $result;
+    }
+
+
     public function createUser($data)
     {
         $user = new User($this->db);
@@ -51,8 +64,6 @@ class UserService
         if (!$existing) {
             throw new Exception("Usuário não encontrado.");
         }
-
-        var_dump($existing);
 
         // Atualiza apenas os campos enviados
         $user->name = isset($data['name']) ? htmlspecialchars(trim($data['name'])) : $existing['name'];

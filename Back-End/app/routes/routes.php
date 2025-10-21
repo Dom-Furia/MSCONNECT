@@ -16,7 +16,18 @@ function getRouteParts() {
 
 switch ($method) {
     case 'GET':
+       $parts = getRouteParts();
+    $resource = $parts[0] ?? null;
+    $id = $parts[1] ?? null;
+
+    if ($resource === 'users' && $id) {
+        $controller->getUserById($id);
+    } elseif ($resource === 'users' || $resource === "") {
         $controller->getUsers();
+    } else {
+        http_response_code(404);
+        echo json_encode(["error" => "Rota não encontrada."]);
+    }
         break;
 
     case 'POST':
@@ -27,8 +38,6 @@ switch ($method) {
     case 'PATCH':
         $data = json_decode(file_get_contents("php://input"), true);
         $id = getRouteParts()[0] ?? null;
-        var_dump($data);
-        var_dump($id);
         $controller->updateUser($id, $data);
         break;
 

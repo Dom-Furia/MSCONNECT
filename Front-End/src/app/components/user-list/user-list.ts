@@ -1,17 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserService, User } from '../../services/user.service';
 import { Router } from '@angular/router';
+import { UserFormComponent } from '../user-form/user-form';
 
 @Component({
   selector: 'app-user-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './user-list.html',
   styleUrl: './user-list.css'
 })
 export class UserListComponent implements OnInit {
   users: User[] = [];
+
 
   constructor(private userService: UserService, private router: Router) {}
 
@@ -21,7 +23,13 @@ export class UserListComponent implements OnInit {
 
   carregarUsuarios() {
     this.userService.getUsers().subscribe({
-      next: (res) => this.users = res,
+      next: (res) => {
+
+        console.log('Usuários carregados:', res);
+        this.users = res;
+        console.log(this.users);
+
+      },
       error: (err) => console.error('Erro ao carregar usuários:', err)
     });
   };

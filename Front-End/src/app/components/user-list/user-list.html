@@ -1,6 +1,5 @@
 <div class="container">
-  <h2>Usuários Cadastrados</h2>
-
+  <h2>Usuarios Cadastrados</h2>
   <table>
     <thead>
       <tr>
@@ -12,20 +11,26 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let user of users">
+      @for (user of users; track user.id) {
+        <tr>
         <td>{{ user.id }}</td>
         <td>{{ user.name }}</td>
         <td>{{ user.email }}</td>
-        <td>{{ user.phone }}</td>
+        <td>{{ user.fone}}</td>
         <td>
           <button class="btn-edit" (click)="editarUsuario(user)">Editar</button>
           <button class="btn-delete" (click)="excluirUsuario(user)">Excluir</button>
         </td>
       </tr>
+
+      }
     </tbody>
   </table>
 
-  <div class="empty" *ngIf="users.length === 0">
+  @if (users.length === 0) {
+  <div class="empty">
     Nenhum usuário encontrado.
   </div>
+  }
+
 </div>

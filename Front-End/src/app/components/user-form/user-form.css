@@ -31,3 +31,9 @@ button {
 button:hover {
   background-color: var(--primary-dark);
 }
+.error {
+  color: red;
+  font-size: 0.8rem;
+  margin-top: 4px;
+  font-weight: bold;
+}
