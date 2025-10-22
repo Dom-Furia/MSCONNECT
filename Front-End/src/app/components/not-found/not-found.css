@@ -1,0 +1,13 @@
+.not-found-container {
+  width: 100vw;
+  height: 100vh;
+  background-image: url('#'); /* Imagem de fundo */
+  background-size: cover;        /* Preenche toda a tela */
+  background-position: center;   /* Centraliza a imagem */
+  background-repeat: no-repeat;  /* Evita repetição */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}

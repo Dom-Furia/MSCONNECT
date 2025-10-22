@@ -1,5 +1,5 @@
-import { Component, signal } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { Component, inject, signal } from '@angular/core';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
 
 
 @Component({
@@ -10,4 +10,8 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 })
 export class App {
   protected readonly title = signal('Front-End');
+
+  router = inject (Router);
+
+
 }

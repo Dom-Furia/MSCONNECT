@@ -42,7 +42,7 @@ export class UserListComponent implements OnInit {
           this.carregarUsuarios(); // Atualiza a lista
         },
         error: (err) => {
-          alert('Erro ao excluir usuário.');
+          alert('Erro ao excluir usuário.' + err.error?.error);
         }
       });
     }
