@@ -12,18 +12,18 @@
     </thead>
     <tbody>
       @for (user of listUser; track user.id) {
-        <tr>
+      <tr>
         <td>{{ user.id }}</td>
         <td>{{ user.name }}</td>
         <td>{{ user.email }}</td>
         <td>{{ user.phone}}</td>
         <td class="button">
-            <button class="btn-edit" (click)="editarUsuario(user)">
-               <i class="fas fa-edit"></i> Editar
-            </button>
-            <button class="btn-delete" (click)="excluirUsuario(user)">
-              <i class="fas fa-trash"></i> Excluir
-            </button>
+          <button class="btn-edit" (click)="editarUsuario(user)">
+            <i class="fas fa-edit"></i> Editar
+          </button>
+          <button class="btn-delete" (click)="abrirModal(user)">
+            <i class="fas fa-trash"></i> Excluir
+          </button>
         </td>
       </tr>
 
@@ -36,5 +36,21 @@
     Nenhum usuário encontrado.
   </div>
   }
+  @if(exibirModal){
+
+  <div class="modal-overlay">
+    <div class="modal">
+      <h3>Tem certeza que deseja excluir?</h3>
+      <p>{{usuarioSelecionado.name}}</p>
+
+      <div class="modal-buttons">
+        <button (click)="confirmarExclusao()">Sim</button>
+        <button (click)="fecharModal()">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+  }
+
 
 </div>

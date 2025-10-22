@@ -6,12 +6,13 @@
   </p>
 
   <div class="cards">
-    <div class="card">
-      <h3>Total de Usuários</h3>
+    <div class="card" (click)="onClique('/users')" >
+      <h3>Total de Usuários </h3>
+      <p class="qt">{{quantidadeUsuarios}}</p>
       <p>Visualize e gerencie os usuários cadastrados.</p>
     </div>
 
-    <div class="card">
+    <div class="card" (click)="onClique('/users/cadastro')">
       <h3>Novo Cadastro</h3>
       <p>Adicione novos usuários ao sistema de forma simples.</p>
     </div>

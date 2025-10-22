@@ -1,13 +1,29 @@
 .not-found-container {
   width: 100vw;
   height: 100vh;
-  background-image: url('#'); /* Imagem de fundo */
+  background-image: url('https://www.shutterstock.com/shutterstock/photos/479042983/display_1500/stock-vector-page-not-found-error-a-hand-drawn-vector-layout-template-of-a-broken-robot-for-your-website-479042983.jpg'); /* Imagem de fundo */
   background-size: cover;        /* Preenche toda a tela */
   background-position: center;   /* Centraliza a imagem */
   background-repeat: no-repeat;  /* Evita repetição */
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: end;
   margin: 0;
   padding: 0;
+}
+.btn-home {
+  padding: 1rem;
+  font-size: 15px;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  margin-bottom: 1rem;
+  transition: 0.3s;
+}
+
+.btn-home:hover {
+  background-color: #0056b3;
 }

@@ -12,6 +12,8 @@ import { Router } from '@angular/router';
 export class UserListComponent implements OnInit {
   users: User[] = [];
   listUser: any[] = [];
+  exibirModal = false;
+  usuarioSelecionado: any = null;
 
   private userService = inject(UserService);
   private router = inject(Router);
@@ -24,7 +26,6 @@ export class UserListComponent implements OnInit {
     this.userService.getUsers().subscribe({
       next: (res) => {
         this.listUser = res;
-
       },
       error: (err) => console.error('Erro ao carregar usuários:', err)
     });
@@ -34,8 +35,26 @@ export class UserListComponent implements OnInit {
     this.router.navigate(['/users/edit', user.id]);
   };
 
+
+
+  abrirModal(user: any) {
+    this.usuarioSelecionado = user;
+    this.exibirModal = true;
+  }
+
+  fecharModal() {
+    this.exibirModal = false;
+    this.usuarioSelecionado = null;
+  }
+
+  confirmarExclusao() {
+    const user = this.usuarioSelecionado as User;
+    this.excluirUsuario(user);
+    this.fecharModal();
+  }
+
+
    excluirUsuario(user: User) {
-    if (confirm(`Tem certeza que deseja excluir o usuário ${user.name}?`)) {
       this.userService.deleteUser(user.id!).subscribe({
         next: () => {
           alert('Usuário excluído com sucesso.');
@@ -45,7 +64,7 @@ export class UserListComponent implements OnInit {
           alert('Erro ao excluir usuário.' + err.error?.error);
         }
       });
-    }
+
   }
 
 }

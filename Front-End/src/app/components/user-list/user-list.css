@@ -55,3 +55,71 @@ tr:hover {
   text-align: center;
 }
 
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.modal {
+  background-color: white;
+  padding: 30px;
+  border-radius: 8px;
+  max-width: 500px;
+  text-align: center;
+  box-shadow: 0 0 10px #0003;
+  font-size: 1.3rem;
+}
+h3{
+  color: red;
+}
+p{
+  font-weight: bold;
+  font: 1.2rem;
+  margin-top: .6rem;
+}
+
+.modal-buttons {
+  width: 100%;
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.modal-buttons button {
+  width: 100%;
+  padding: .8rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+
+.modal-buttons button:first-child {
+  background-color: #dc3545;
+  color: white;
+}
+
+.modal-buttons button:last-child {
+  background-color: #6c757d;
+  color: white;
+}
+.modal-buttons button:last-child:hover{
+  background-color: #5a6268;
+}
+
+.modal-buttons button:first-child:hover{
+  background-color: #f7374b;
+}
+
+
+
