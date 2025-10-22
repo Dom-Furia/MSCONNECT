@@ -1,31 +1,45 @@
-version: '3.8'
-
 services:
-  mysql:
+  backend:
+    build:
+      context: ./Back-End
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./Back-End:/app
+    environment:
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      DB_DATABASE: ${DB_DATABASE}
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+    depends_on:
+      - db
+
+  db:
     image: mysql:8.0
-    container_name: mysql
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: crud_app
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
     ports:
       - "3306:3306"
     volumes:
-      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
-    networks:
-      - app-network
-  backend:
-    build: ./backend
-    container_name: php-backend
-    ports:
-      - "8080:80"
-    volumes:
-      - ./backend:/var/www/html
-    depends_on:
-      - mysql
-    networks:
-      - app-network
+      - mysql-data:/var/lib/mysql
+      - ./Back-End/database:/docker-entrypoint-initdb.d
 
-networks:
-  app-network:
-    driver: bridge
+  frontend:
+    build:
+      context: ./Front-End
+    ports:
+      - "4200:4200"
+    volumes:
+      - ./Front-End:/app
+      - /app/node_modules
+    depends_on:
+      - backend
+    command: ["ng", "serve", "--host", "0.0.0.0"]
+
+volumes:
+  mysql-data:
