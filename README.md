@@ -13,7 +13,7 @@ Este projeto utiliza Docker e Docker Compose para  um ambiente completo com:
 1. **Clone o repositório:**
 
 ```bash
-git clone https://github.com/seu-usuario/seu-repo.git
+git clone https://github.com/Dom-Furia/MSCONNECT.git
 ```
 
 2. **Crie o arquivo .env na raiz do projeto**
