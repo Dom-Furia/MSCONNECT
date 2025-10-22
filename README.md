@@ -42,9 +42,9 @@ docker-compose up --build
 ```
 ```bash
 Esse comando irá:
- Buildar as imagens do backend e frontend
- Criar os containers
- Subir o banco de dados com volume persistente
+** Buildar as imagens do backend e frontend
+** Criar os containers
+** Subir o banco de dados com volume persistente
 ```
 
 
