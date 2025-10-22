@@ -1,15 +1,14 @@
-FROM php:8.2-apache
+FROM node:22 AS build
 
-# Instalar extensão PDO MySQL
-RUN docker-php-ext-install pdo pdo_mysql
+WORKDIR /app
 
-# Habilitar mod_rewrite (importante para rotas REST)
-RUN a2enmod rewrite
+# Copia package.json e package-lock.json primeiro
+COPY . .
 
-# Copiar código para dentro do container
-COPY . /var/www/html/
+RUN npm install
 
-# Definir diretório de trabalho
-WORKDIR /var/www/html
+RUN npm install @angular/cli -g
 
-EXPOSE 80
+EXPOSE 4200
+
+CMD ["ng", "serve", "--host", "0.0.0.0"]
