@@ -46,22 +46,13 @@ Esse comando irá:
 - **Subir o banco de dados com volume persistente**
 
 
-🐳 Comandos Docker Compose úteis
-Ação	                                    Comando
-Subir a aplicação com build	                docker-compose up --build
-Subir sem rebuild	                        docker-compose up
-Parar os containers	                        docker-compose down
-Limpar tudo (inclui volumes e imagens)	    docker-compose down --volumes --rmi all
-
-
 🌐 URLs de acesso
 
 Após os containers estarem rodando, acesse:
-
-Serviço	            URL	                                           Porta
-Frontend	        http://localhost:4200                           4200
-Backend API         http://localhost:8080                           8080
-MySQL               localhost:3306 (acesso via cliente MySQL)       3306
+                                     
+**Frontend:** http://localhost:4200
+**Backend API:** http://localhost:8080            
+**MySQL:** localhost:3306 (acesso via cliente MySQL)
 
 
 
