@@ -30,9 +30,8 @@ MYSQL_ROOT_PASSWORD=rootpass
 4. **Faça instalação do docker em sua maquina:**
 
 ```bash
-[link](https://www.youtube.com/watch?v=XbXfWAze-I8)
-
-https://www.docker.com/
+link: https://www.youtube.com/watch?v=XbXfWAze-I8
+link: https://www.docker.com/
 ```
 
 5. **Buildar e subir a aplicação com Docker Compose:**
