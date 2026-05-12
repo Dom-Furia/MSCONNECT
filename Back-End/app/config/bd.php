@@ -10,9 +10,9 @@ class Database {
     public function __construct() {
         // Recebe variáveis do ambiente Docker (docker-compose)
         $this->host = getenv('DB_HOST') ?: 'localhost';  // 'db' é o nome do serviço no docker-compose
-        $this->db_name = getenv('MYSQL_DATABASE') ?: 'crud_app';
-        $this->username = getenv('MYSQL_USER') ?: 'root';
-        $this->password = getenv('MYSQL_PASSWORD') ?: 'root';
+        $this->db_name = getenv('DB_DATABASE');
+        $this->username = getenv('DB_USERNAME');
+        $this->password = getenv('DB_PASSWORD');
     }
 
     public function getConnection() {

@@ -1,4 +1,3 @@
-CREATE DATABASE crud_app;
 
 USE crud_app;
 
@@ -14,4 +13,5 @@ CREATE TABLE IF NOT EXISTS users (
 INSERT INTO users (name, email, phone) VALUES
 ('Julio Cesar', 'julio@email.com', '99999-9999'),
 ('Ana Maria', 'ana@email.com', '98888-8888'),
+('Jose Augusto', 'jose@email.com', '98878-8888'),
 ('Carlos Silva', 'carlos@email.com', '97777-7777');
